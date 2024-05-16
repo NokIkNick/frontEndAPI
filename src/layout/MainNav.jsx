@@ -49,7 +49,7 @@ export const MainNav = ({currentUser, roles, setIsAuthenticated}) => {
               <StyledNavLink to="about">About</StyledNavLink> 
             </ListItem>
             <ListItem>
-              <StyledNavLink to="contact">Contact</StyledNavLink>
+              <StyledNavLink to="questions">Questions</StyledNavLink>
             </ListItem>
             <ListItem>
               <StyledNavLink to="entities">Entities</StyledNavLink>

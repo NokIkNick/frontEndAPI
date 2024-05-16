@@ -6,6 +6,8 @@ import { PageNotFound } from "./page/PageNotFound"
 import { Login } from "./page/Login"
 import { Logout } from "./page/Logout"
 import { ProtectedRoute } from "./page/ProtectedRoute"
+import { Questions } from "./page/Questions"
+import { Question } from "./page/Question"
 
 
 
@@ -53,6 +55,10 @@ function App() {
               <Route index element={<h1>All entities</h1>}/>
               <Route path=":entityId" element={<Entity/>} />
             </Route>
+              <Route path="/questions" element={<Questions />}>
+              <Route index element={<h1>Questions</h1>}/>
+              <Route path=":questionId" element={<Question/>}/>
+              </Route>
             </Route>
             <Route path="/login" element={<Login isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} setCurrentUser={setCurrentUser} currentUser={currentUser}/>}/>
             <Route path="/logout" element={<Logout isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} setCurrentUser={setCurrentUser}/>}/> 
