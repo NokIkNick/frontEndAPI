@@ -37,7 +37,7 @@ export const MainNav = ({currentUser, roles, setIsAuthenticated}) => {
   }, []) 
   
   
-  
+  {/*what*/}
   return(
       <>
         <NavigationBar>
