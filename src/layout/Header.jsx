@@ -1,9 +1,10 @@
-import { MainNav } from './MainNav'
+import React from 'react'
+import { Navbar } from './Navbar'
 
-export const Header = ({currentUser, roles, setIsAuthenticated}) => {
-    return (
-      <>
-        <MainNav currentUser={currentUser} roles={roles} setIsAuthenticated={setIsAuthenticated}/>
-      </>
-    )
-  }
+export const Header = () => {
+  return (
+    <>
+        <Navbar/>
+    </>
+  )
+}
