@@ -1,71 +1,36 @@
-import React, { useEffect, useState } from "react"
-import { BrowserRouter, Navigate, Outlet, Route, Routes, useParams } from "react-router-dom"
-import { AppLayout } from "./layout/AppLayout"
-import { Home } from "./page/Home"
+import React from "react"
+import { BrowserRouter, Routes, Route} from "react-router-dom"
+import {Home} from "./page/Home"
+import {Layout} from "./layout/Layout"
 import { PageNotFound } from "./page/PageNotFound"
-import { Login } from "./page/Login"
-import { Logout } from "./page/Logout"
-import { ProtectedRoute } from "./page/ProtectedRoute"
-import { Questions } from "./page/Questions"
-import { Question } from "./page/Question"
+import { About } from "./page/About"
+import { Skills } from "./page/Skills"
+import { Education } from "./page/Education"
+import { Projects } from "./page/Projects"
+import { Experience } from "./page/Experience"
+import { Contact } from "./page/Contact"
 
 
 
 function App() {
-  const [currentUser, setCurrentUser] = useState({token: null, username: null, roles: null});
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-  const Entities = ({currentUser}) => {
-    return (
-      <>
-        {currentUser.username !== null && <h1>Entities</h1> ? <div>
-          <h1>Entities</h1>
-          <Outlet/>
-        </div> : <h1>Not allowed entry</h1>}
-      </>
-    )
-  }
-
-  const Entity = () => {
-    const params = useParams();
-    
-    return (
-      <>
-        <h1>Entity: {params.entityId}</h1>
-      </>
-    )
-  }
-
 
 
   return (
     <>
-      <div>
         <BrowserRouter>
           <Routes>
-          <Route element={<ProtectedRoute isAuthenticated={isAuthenticated}>
-            <AppLayout setIsAuthenticated={setIsAuthenticated} currentUser={currentUser} roles={currentUser.roles}/>
-          </ProtectedRoute>}>
-            <Route index element={<Navigate to="home"/>}/>
-            <Route path="home" element={<Home currentUser={currentUser} />}/>
-            <Route path="/" element={<Home />}/>
-            <Route path="/about" element={<h1>About</h1>}/>
-            <Route path="/contact" element={<h1>Contact</h1>}/>
-            <Route path="/entities" element={<Entities currentUser={currentUser} />}>
-              <Route index element={<h1>All entities</h1>}/>
-              <Route path=":entityId" element={<Entity/>} />
+            <Route path="/" element={<Layout/>}>
+                <Route index element={<Home/>}/>
+                <Route path="/about" element={<About/>}/>
+                <Route path="/skills" element={<Skills/>}/>
+                <Route path="/education" element={<Education/>}/>
+                <Route path="/projects" element={<Projects/>}/>
+                <Route path="/experience" element={<Experience/>}/>
+                <Route path="/contact" element={<Contact/>}/>
             </Route>
-              <Route path="/questions" element={<Questions />}>
-              <Route index element={<h1>Questions</h1>}/>
-              <Route path=":questionId" element={<Question/>}/>
-              </Route>
-            </Route>
-            <Route path="/login" element={<Login isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} setCurrentUser={setCurrentUser} currentUser={currentUser}/>}/>
-            <Route path="/logout" element={<Logout isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} setCurrentUser={setCurrentUser}/>}/> 
             <Route path="*" element={<PageNotFound/>}/>
           </Routes>
         </BrowserRouter>
-      </div>
     </>
   )
 }
