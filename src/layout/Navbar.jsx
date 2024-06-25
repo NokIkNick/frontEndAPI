@@ -1,9 +1,10 @@
 import React, {useState} from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
 const Container = styled.div`
     display: flex;
+    box-shadow: 0 0 1em 0 rgba(0,0,0,0.1);
 `;
 
 const NavigationBar = styled.nav`
@@ -12,6 +13,7 @@ const NavigationBar = styled.nav`
     justify-content: space-between;
     flex-wrap: wrap;
     align-items: center;
+    
 
     @media (min-width: 768px){
         flex-wrap: nowrap;
@@ -25,6 +27,11 @@ const Logo = styled.div`
     padding: 1vh;
     width: 100%;
     font-size: 1.3rem;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select:none;
+    cursor: pointer;
 
     @media (min-width: 768px){
       display: flex;
@@ -40,6 +47,10 @@ const MenuIcon = styled.div`
     font-size: 1.8rem;
     padding: 1vh;
     color: var(--grey);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select:none;
 
     @media (min-width: 768px){
         display: none;
@@ -63,7 +74,7 @@ const StyledUl = styled.ul`
 `;
 
 const StyledLi = styled.li`
-    display: ${({isOpen}) => isOpen ? 'flex' : 'none'};  
+    display: ${({$isOpen}) => $isOpen ? 'flex' : 'none'};  
     flex:1;
     justify-content: center;
     padding: 1%;
@@ -78,8 +89,9 @@ const StyledNavlink = styled(NavLink)`
     text-decoration: none;
     padding: 1vh;
     font-size: 100%;
-    display: ${({isOpen}) => isOpen ? 'block' : 'none'};  
+    display: ${({$isOpen}) => $isOpen ? 'block' : 'none'};  
     width: 100%;
+    color: var(--grey);
     
     @media (min-width: 768px){
         display: flex;
@@ -113,33 +125,34 @@ const StyledNavlink = styled(NavLink)`
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
+  const navigate = useNavigate();
 
   return (
     <Container>
         <NavigationBar>
-            <Logo id='logo'>Nicklas Winther</Logo>
+            <Logo id='logo' onClick={() => {navigate("/")}}>Nicklas Winther</Logo>
             <MenuIcon onClick={() => setIsOpen(!isOpen)}>☰</MenuIcon>
             <StyledUl>
-                <StyledLi isOpen={isOpen}>
-                  <StyledNavlink isOpen={isOpen} to="/">Home</StyledNavlink>
+                <StyledLi $isOpen={isOpen}>
+                  <StyledNavlink $isOpen={isOpen} to="/">Home</StyledNavlink>
                 </StyledLi>
-                <StyledLi isOpen={isOpen}>  
-                  <StyledNavlink isOpen={isOpen} to="/about">About</StyledNavlink>
+                <StyledLi $isOpen={isOpen}>  
+                  <StyledNavlink $isOpen={isOpen} to="/about">About</StyledNavlink>
                 </StyledLi>
-                <StyledLi isOpen={isOpen}>
-                  <StyledNavlink isOpen={isOpen} to="/skills">Skills</StyledNavlink>
+                <StyledLi $isOpen={isOpen}>
+                  <StyledNavlink $isOpen={isOpen} to="/skills">Skills</StyledNavlink>
                 </StyledLi>
-                <StyledLi isOpen={isOpen}>
-                  <StyledNavlink isOpen={isOpen} to="/education">Education</StyledNavlink>
+                <StyledLi $isOpen={isOpen}>
+                  <StyledNavlink $isOpen={isOpen} to="/education">Education</StyledNavlink>
                 </StyledLi>
-                <StyledLi isOpen={isOpen}>
-                  <StyledNavlink isOpen={isOpen} to="/projects">Projects</StyledNavlink>
+                <StyledLi $isOpen={isOpen}>
+                  <StyledNavlink $isOpen={isOpen} to="/projects">Projects</StyledNavlink>
                 </StyledLi>
-                <StyledLi isOpen={isOpen}>
-                  <StyledNavlink isOpen={isOpen} to="/experience">Experience</StyledNavlink>
+                <StyledLi $isOpen={isOpen}>
+                  <StyledNavlink $isOpen={isOpen} to="/experience">Experience</StyledNavlink>
                 </StyledLi>
-                <StyledLi isOpen={isOpen}>  
-                  <StyledNavlink isOpen={isOpen} to="/contact">Contact</StyledNavlink>
+                <StyledLi $isOpen={isOpen}>  
+                  <StyledNavlink $isOpen={isOpen} to="/contact">Contact</StyledNavlink>
                 </StyledLi>
             </StyledUl>
         </NavigationBar>

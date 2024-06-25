@@ -4,7 +4,6 @@ const GlobalStyles = createGlobalStyle`
 
     :root {
 
-    //Colours:
     --navy-blue: #25274d;
     --grey-blue: #464866;
     --grey: #aaabb8;

@@ -41,6 +41,23 @@ export const register = async (username, password, callback) => {
     }catch (error){
         console.log(error);
     }
+}
 
+export const fetchProfile = async () => {
+    
+    const response = await fetch("https://api.github.com/users/nokiknick", {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/vnd.github+json",
+            "X-GitHub-Api-Version": "2022-11-28"
+        }
+    });
+
+    if(!response.ok){
+        throw new Error("Profile not found");
+    }
+    const data = await response.json();
+    return data;
+    
 }
 
